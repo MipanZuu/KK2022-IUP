@@ -68,7 +68,7 @@ print("--- %s seconds ---" % (time.time() - start_time))
 labels = kmeans.labels_
 
 #Visualization of clustering
-colors = 'rgbkcmy'
+colors = 'brkcmygr'
 for i in np.unique(clusters):
     plt.scatter(X_scaled[clusters==i,0],
                X_scaled[clusters==i,1],
