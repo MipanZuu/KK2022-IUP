@@ -8,7 +8,7 @@ from sklearn import datasets
 
 dataImport = pd.read_csv('winequality-red.csv')
 print("Successfully Imported Data!")
-dataImport.head()
+print(dataImport.head())
 
 print(dataImport.shape)
 dataImport.describe(include='all')
