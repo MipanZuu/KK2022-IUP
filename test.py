@@ -11,10 +11,12 @@ from sklearn import datasets
 from sklearn.cluster import KMeans
 from sklearn.metrics import f1_score
 from warnings import filterwarnings
+import time
+from datetime import date
 
 
 
-figure(figsize=(8, 6), dpi=80) # set the default views
+figure(figsize=(16, 8), dpi=100) # set the default views
 dataImport = pd.read_csv('winequality-red.csv')
 print("Successfully Imported Data!")
 dataImport.head()
@@ -35,7 +37,7 @@ visual = sns.pairplot(dataImport)
 # print(visual)
 
 visual2 = sns.displot(dataImport['quality'])
-plt.show()
+# plt.show()
 # plt.savefig('test.png', dpi=100)
 
 # set the x and y and array
@@ -57,6 +59,14 @@ plt.xlabel('clusters')
 plt.ylabel('WCSS')
 plt.show()
 
+
+kmeans = KMeans(n_clusters = 2)
+start_time = time.time()
+clusters = kmeans.fit_predict(X_scaled)
+today = date.today()
+print("--- %s seconds ---" % (time.time() - start_time))
+labels = kmeans.labels_
+
 #Visualization of clustering
 colors = 'rgbkcmy'
 for i in np.unique(clusters):
@@ -64,3 +74,5 @@ for i in np.unique(clusters):
                X_scaled[clusters==i,1],
                color=colors[i], label='Cluster' + str(i+1))
 plt.legend()
+plt.show()
+
