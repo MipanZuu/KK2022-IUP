@@ -16,7 +16,7 @@ from datetime import date
 
 
 
-figure(figsize=(16, 8), dpi=100) # set the default views
+figure(figsize=(16, 10), dpi=100) # set the default views
 dataImport = pd.read_csv('winequality-red.csv')
 print("Successfully Imported Data!")
 dataImport.head()
@@ -28,8 +28,9 @@ dataImport.dtypes
 dataImport.describe(include='all')
 # print(dataImport.describe(include='all')) #describe all of datas
 dataImport.isnull().any().any() # check missing data
+print(dataImport.isnull().any().any())
 dataImport.applymap(np.isreal)
-# print(dataImport.applymap(np.isreal))
+print(dataImport.applymap(np.isreal))
 
 visual = sns.pairplot(dataImport)
 # plt.show()
@@ -41,7 +42,7 @@ visual2 = sns.displot(dataImport['quality'])
 # plt.savefig('test.png', dpi=100)
 
 # set the x and y and array
-X = dataImport.iloc[:,[1,2,3,4]]
+X = dataImport.iloc[:, 0:11]
 y = dataImport['quality']
 X_scaled = StandardScaler().fit_transform(X)
 print(dataImport.head()) 
