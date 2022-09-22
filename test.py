@@ -14,8 +14,6 @@ from warnings import filterwarnings
 import time
 from datetime import date
 
-
-
 figure(figsize=(16, 10), dpi=100) # set the default views
 dataImport = pd.read_csv('winequality-red.csv')
 print("Successfully Imported Data!")
@@ -28,22 +26,22 @@ dataImport.dtypes
 dataImport.describe(include='all')
 # print(dataImport.describe(include='all')) #describe all of datas
 dataImport.isnull().any().any() # check missing data
-print(dataImport.isnull().any().any())
+# print(dataImport.isnull().any().any())
 dataImport.applymap(np.isreal)
-print(dataImport.applymap(np.isreal))
+# print(dataImport.applymap(np.isreal))
 
 visual = sns.pairplot(dataImport)
 # plt.show()
 # plt.savefig('/Users/dentabramasta/FigureKKWine/', transparent=True)
 # print(visual)
 
-visual2 = sns.displot(dataImport['quality'])
+visual2 = sns.displot(dataImport['alcohol'])
 # plt.show()
 # plt.savefig('test.png', dpi=100)
 
 # set the x and y and array
 X = dataImport.iloc[:, 0:11]
-y = dataImport['quality']
+y = dataImport['alcohol']
 X_scaled = StandardScaler().fit_transform(X)
 print(dataImport.head()) 
 
@@ -76,4 +74,5 @@ for i in np.unique(clusters):
                color=colors[i], label='Cluster' + str(i+1))
 plt.legend()
 plt.show()
+
 
