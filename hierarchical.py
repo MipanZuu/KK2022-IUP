@@ -30,7 +30,7 @@ print(scale.head())
 plt.figure(figsize=(16, 8))
 plt.title("Dendograms")
 dendogram = shc.dendrogram(shc.linkage(scale, method='single'))
-plt.axhline(y=6.2, color='r', linestyle='--')
+plt.axhline(y=6, color='r', linestyle='--')
 plt.show()
 
 #create clusters SINGLE inter-cluster distance
@@ -48,7 +48,7 @@ plt.show()
 plt.figure(figsize=(16, 8))
 plt.title("Dendograms")
 dendogram = shc.dendrogram(shc.linkage(scale, method='complete'))
-plt.axhline(y=6.2, color='r', linestyle='--')
+plt.axhline(y=0.5, color='r', linestyle='--')
 plt.show()
 
 #create clusters SINGLE inter-cluster distance
