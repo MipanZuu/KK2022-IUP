@@ -25,18 +25,37 @@ scale = pd.DataFrame(scale, columns=dataImport.columns)
 scale.head()
 print(scale.head())
 
-#create dendograms
+
+# SINGLE INTER-CLUSTER DISTANCE
+#create dendograms with SINGLE inter-cluster distance
 plt.figure(figsize=(16, 8))
 plt.title("Dendograms")
-dendogram = shc.dendrogram(shc.linkage(scale, method='ward'))
+dendogram = shc.dendrogram(shc.linkage(scale, method='single'))
 plt.axhline(y=6.2, color='r', linestyle='--')
 plt.show()
 
-#create clusters
-cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')  
+#create clusters SINGLE inter-cluster distance
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='single')  
 cluster.fit_predict(scale)
 print(cluster.fit_predict(scale))
 
+# cluster dots
+plt.figure(figsize=(16, 8))  
+plt.scatter(scale['quality'], scale['alcohol'], c=cluster.labels_) 
+plt.show()
+
+# COMPLETE INTER-CLUSTER DISTANCE
+#create dendograms with COMPLETE inter-cluster distance
+plt.figure(figsize=(16, 8))
+plt.title("Dendograms")
+dendogram = shc.dendrogram(shc.linkage(scale, method='complete'))
+plt.axhline(y=6.2, color='r', linestyle='--')
+plt.show()
+
+#create clusters SINGLE inter-cluster distance
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='complete')  
+cluster.fit_predict(scale)
+print(cluster.fit_predict(scale))
 
 # cluster dots
 plt.figure(figsize=(16, 8))  
