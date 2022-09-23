@@ -2,13 +2,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import time
+import scipy.cluster.hierarchy as shc
 from matplotlib.pyplot import figure #scale the view
 from sklearn.preprocessing import StandardScaler, normalize
 from sklearn import datasets
 from sklearn.cluster import KMeans
 from sklearn.metrics import f1_score
 from warnings import filterwarnings
-import time
 from datetime import date
 
 figure(figsize=(16,8), dpi=100)
@@ -23,3 +24,8 @@ scale = normalize(dataImport)
 scale = pd.DataFrame(scale, columns=dataImport.columns)
 scale.head()
 print(scale.head())
+
+plt.figure(figsize=(16, 8))
+plt.title("Dendograms")
+dendogram = shc.dendrogram(shc.linkage(scale, method='ward'))
+plt.show()
