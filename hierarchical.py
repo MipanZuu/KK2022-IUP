@@ -13,7 +13,6 @@ from warnings import filterwarnings
 from datetime import date
 
 figure(figsize=(16,8), dpi=100)
-
 dataImport = pd.read_csv('winequality-red.csv')
 print("successfully added data!")
 dataImport.head()
