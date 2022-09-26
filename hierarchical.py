@@ -32,7 +32,7 @@ dendogram = shc.dendrogram(shc.linkage(scale, method='single'))
 plt.axhline(y=6, color='r', linestyle='--')
 plt.show()
 
-#create clusters SINGLE inter-cluster distance
+#create clusters COMPLETE inter-cluster distance
 cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='single')  
 cluster.fit_predict(scale)
 print(cluster.fit_predict(scale))
@@ -52,6 +52,24 @@ plt.show()
 
 #create clusters SINGLE inter-cluster distance
 cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='complete')  
+cluster.fit_predict(scale)
+print(cluster.fit_predict(scale))
+
+# cluster dots
+plt.figure(figsize=(16, 8))  
+plt.scatter(scale['quality'], scale['alcohol'], c=cluster.labels_) 
+plt.show()
+
+# AVERAGE INTER-CLUSTER DISTANCE
+#create dendograms with AVERAGE inter-cluster distance
+plt.figure(figsize=(16, 8))
+plt.title("Dendograms")
+dendogram = shc.dendrogram(shc.linkage(scale, method='average'))
+plt.axhline(y=0.5, color='r', linestyle='--')
+plt.show()
+
+#create clusters AVERAGE inter-cluster distance
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='average')  
 cluster.fit_predict(scale)
 print(cluster.fit_predict(scale))
 
